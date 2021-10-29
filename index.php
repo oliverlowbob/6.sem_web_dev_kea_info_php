@@ -12,15 +12,15 @@ include_once("info.php");
 </head>
 
 <body>
-    <form method="POST" action="">
+    <form method="POST" action="index.php">
         <select name="language" onchange="this.form.submit()">
-            <option value="danish" selected>Danish</option>
-            <option value="english">English</option>
+            <option value="danish" <?php if ($_COOKIE["language"] == 'danish') echo ' selected="selected"'; ?>>Danish</option>
+            <option value="english" <?php if ($_COOKIE["language"] == 'english') echo ' selected="selected"'; ?>>English</option>
         </select>
     </form>
     <p>
         <?php
-        if(isset($_COOKIE["language"])){
+        if (isset($_COOKIE["language"])) {
             if ($_COOKIE["language"] == "danish") {
                 echo $danishInfo->content;
             } else {
