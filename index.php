@@ -14,14 +14,14 @@ include_once("info.php");
 <body>
     <form method="POST" action="index.php">
         <select name="language" onchange="this.form.submit()">
-            <option value="danish" <?php if ($_COOKIE["language"] == 'danish') echo ' selected="selected"'; ?>>Danish</option>
-            <option value="english" <?php if ($_COOKIE["language"] == 'english') echo ' selected="selected"'; ?>>English</option>
+            <option value="danish" <?php if (isset($_SESSION["language"])) { if ($_SESSION["language"] == 'danish') echo ' selected="selected"'; }?>>Danish</option>
+            <option value="english" <?php if (isset($_SESSION["language"])) { if ($_SESSION["language"] == 'english') echo ' selected="selected"'; }?>>English</option>
         </select>
     </form>
     <p>
         <?php
-        if (isset($_COOKIE["language"])) {
-            if ($_COOKIE["language"] == "danish") {
+        if (isset($_SESSION["language"])) {
+            if ($_SESSION["language"] == "danish") {
                 echo $danishInfo->content;
             } else {
                 echo $englishInfo->content;
@@ -29,6 +29,9 @@ include_once("info.php");
         }
         ?>
     </p>
+    <form action="" method="post">
+        <input type="submit" name="deleteSession" value="Delete Session">
+    </form>
 </body>
 
 </html>
